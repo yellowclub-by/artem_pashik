@@ -8,6 +8,9 @@ dp = Dispatcher()
 from Handlers.user_command import user_router
 dp.include_router(user_router)
 
+from Handlers.group_command import group_router
+dp.include_router(group_router)
+
 async def main():
     print("Бот запущен")
     await dp.start_polling(bot)

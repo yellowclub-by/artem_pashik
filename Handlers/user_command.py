@@ -1,62 +1,73 @@
 import asyncio
 from aiogram.filters import CommandStart, Command
 from aiogram import types, Router, F
+from Keyboards import reply
 
 user_router = Router()
 
 @user_router.message(CommandStart())
 async def start_cmd(message):
-    await message.answer("Бот для покупки игр. Команды купить, /buy - купить по жанру игры, каталог, /сatalog - выбрать из всего каталога")
+    await message.answer("Бот для покупки игр. Команды купить, /buy - купить по жанру игры, каталог, /сatalog - выбрать из всего каталога", reply_markup=reply.main_kb)
 
 @user_router.message(F.text.lower() == "купить")
 @user_router.message(Command("buy"))
 async def genre(message: types.Message):
-    await message.answer("Выберите жанр игры")
+    await message.answer("Выберите жанр игры", reply_markup=reply.buy_kb)
 
 @user_router.message(F.text.lower() == "каталог")
 @user_router.message(Command("catalog"))
 async def catalog(message: types.Message):
     await message.answer("Выберите игру из всех доступных")
 
-# @user_router.message(Command("Shooter"))
-# async def katalog(message: types.Message):
-#     await message.answer("Выберите игру из списка возможных:")
-#
-# @user_router.message(Command("Survival"))
-# async def katalog(message: types.Message):
-#     await message.answer("Выберите игру из списка возможных:")
-#
-# @user_router.message(Command("Horror"))
-# async def katalog(message: types.Message):
-#     await message.answer("Выберите игру из списка возможных:")
-#
-# @user_router.message(Command("Sandbox"))
-# async def katalog(message: types.Message):
-#     await message.answer("Выберите игру из списка возможных:")
-#
-# @user_router.message(Command("RPG"))
-# async def katalog(message: types.Message):
-#     await message.answer("Выберите игру из списка возможных:")
-#
-# @user_router.message(Command("Tower Defense"))
-# async def katalog(message: types.Message):
-#     await message.answer("Выберите игру из списка возможных:")
-#
-# @user_router.message(Command("Simulator"))
-# async def katalog(message: types.Message):
-#     await message.answer("Выберите игру из списка возможных:")
-#
-# @user_router.message(Command("Adventure"))
-# async def katalog(message: types.Message):
-#     await message.answer("Выберите игру из списка возможных:")
-#
-# @user_router.message(Command("Platformer"))
-# async def katalog(message: types.Message):
-#     await message.answer("Выберите игру из списка возможных:")
-#
-# @user_router.message(Command("Puzzle"))
-# async def katalog(message: types.Message):
-#     await message.answer("Выберите игру из списка возможных:")
+@user_router.message(F.text.lower() == "shooter")
+@user_router.message(Command("shooter"))
+async def Shooter(message: types.Message):
+    await message.answer("Выберите игру из списка возможных:")
+
+@user_router.message(F.text.lower() == "survival")
+@user_router.message(Command("survival"))
+async def Survival(message: types.Message):
+    await message.answer("Выберите игру из списка возможных шутеров:")
+
+@user_router.message(F.text.lower() == "horror")
+@user_router.message(Command("horror"))
+async def Horror(message: types.Message):
+    await message.answer("Выберите игру из списка возможных хорроров:")
+
+@user_router.message(F.text.lower() == "sandbox")
+@user_router.message(Command("sandbox"))
+async def Sandbox(message: types.Message):
+    await message.answer("Выберите игру из списка возможных песочниц:")
+
+@user_router.message(F.text.lower() == "rpg")
+@user_router.message(Command("rpg"))
+async def RPG(message: types.Message):
+    await message.answer("Выберите игру из списка возможных рпг:")
+
+@user_router.message(F.text.lower() == "tower defense")
+@user_router.message(Command("tower defense"))
+async def TD(message: types.Message):
+    await message.answer("Выберите игру из списка возможных тавер дефенсов:")
+
+@user_router.message(F.text.lower() == "simulator")
+@user_router.message(Command("simulator"))
+async def Simulator(message: types.Message):
+    await message.answer("Выберите игру из списка возможных симуляторов:")
+
+@user_router.message(F.text.lower() == "adventure")
+@user_router.message(Command("adventure"))
+async def Adventure(message: types.Message):
+    await message.answer("Выберите игру из списка возможных приключений:")
+
+@user_router.message(F.text.lower() == "platformer")
+@user_router.message(Command("platformer"))
+async def Platformer(message: types.Message):
+    await message.answer("Выберите игру из списка возможных платформеров:")
+
+@user_router.message(F.text.lower() == "puzzle")
+@user_router.message(Command("puzzle"))
+async def Puzzle(message: types.Message):
+    await message.answer("Выберите игру из списка возможных головоломок:")
 
 #@user_router.message(F.text.lower() == "rr")
 #@user_router.message(F.text)
