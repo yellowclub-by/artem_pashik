@@ -22,32 +22,32 @@ async def catalog(message: types.Message):
 @user_router.message(F.text.lower() == "shooter")
 @user_router.message(Command("shooter"))
 async def Shooter(message: types.Message):
-    await message.answer("Выберите игру из списка возможных:")
+    await message.answer("Выберите игру из списка возможных:", reply_markup=reply.shooter_kb)
 
 @user_router.message(F.text.lower() == "survival")
 @user_router.message(Command("survival"))
 async def Survival(message: types.Message):
-    await message.answer("Выберите игру из списка возможных шутеров:")
+    await message.answer("Выберите игру из списка возможных шутеров:", reply_markup=reply.survival_kb)
 
 @user_router.message(F.text.lower() == "horror")
 @user_router.message(Command("horror"))
 async def Horror(message: types.Message):
-    await message.answer("Выберите игру из списка возможных хорроров:")
+    await message.answer("Выберите игру из списка возможных хорроров:", reply_markup=reply.horror_kb)
 
 @user_router.message(F.text.lower() == "sandbox")
 @user_router.message(Command("sandbox"))
 async def Sandbox(message: types.Message):
-    await message.answer("Выберите игру из списка возможных песочниц:")
+    await message.answer("Выберите игру из списка возможных песочниц:", reply_markup=reply.sandbox_kb)
 
 @user_router.message(F.text.lower() == "rpg")
 @user_router.message(Command("rpg"))
 async def RPG(message: types.Message):
-    await message.answer("Выберите игру из списка возможных рпг:")
+    await message.answer("Выберите игру из списка возможных рпг:", reply_markup=reply.rpg_kb)
 
 @user_router.message(F.text.lower() == "tower defense")
 @user_router.message(Command("tower defense"))
 async def TD(message: types.Message):
-    await message.answer("Выберите игру из списка возможных тавер дефенсов:")
+    await message.answer("Выберите игру из списка возможных тавер дефенсов:", reply_markup=reply.tower_defence_kb)
 
 @user_router.message(F.text.lower() == "simulator")
 @user_router.message(Command("simulator"))
@@ -68,6 +68,11 @@ async def Platformer(message: types.Message):
 @user_router.message(Command("puzzle"))
 async def Puzzle(message: types.Message):
     await message.answer("Выберите игру из списка возможных головоломок:")
+
+@user_router.message(F.text.lower() == "назад")
+@user_router.message(Command("назад"))
+async def back(message: types.Message):
+    await message.answer("Главное меню",reply_markup=reply.main_kb)
 
 #@user_router.message(F.text.lower() == "rr")
 #@user_router.message(F.text)
