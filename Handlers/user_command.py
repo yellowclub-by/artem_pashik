@@ -1,7 +1,9 @@
 import asyncio
 from aiogram.filters import CommandStart, Command
 from aiogram import types, Router, F
-from Keyboards import reply
+from aiogram.types import FSInputFile
+
+from Keyboards import reply, InLine
 
 user_router = Router()
 
@@ -17,7 +19,56 @@ async def genre(message: types.Message):
 @user_router.message(F.text.lower() == "каталог")
 @user_router.message(Command("catalog"))
 async def catalog(message: types.Message):
-    await message.answer("Выберите игру из всех доступных")
+    await message.answer("Выберите игру из всех доступных", reply_markup=InLine.catalog_kb())
+
+@user_router.callback_query(F.data.startswith("games"))
+async def games_info(callback:types.CallbackQuery):
+    query = callback.data.split("_")[1]
+    if query == "1":
+        photo = FSInputFile(r"images\catalog\cs2prev.jpeg")
+        await callback.message.answer_photo(photo, caption="пж зарегай 2")
+        await callback.message.answer("Отлично! Ваш выбор Counter Strike 2. Ожидайте ключ от игры в течении 5 минут.")
+    elif query == "2":
+        photo = FSInputFile(r"images\catalog\codprev.jpeg")
+        await callback.message.answer_photo(photo, caption="калда")
+        await callback.message.answer("Отлично! Ваш выбор Call of duty. Ожидайте ключ от игры в течении 5 минут.")
+    elif query == "3":
+        photo = FSInputFile(r"images\catalog\rustprev.jpeg")
+        await callback.message.answer_photo(photo, caption="ржавчина")
+        await callback.message.answer("Отлично! Ваш выбор Rust. Ожидайте ключ от игры в течении 5 минут.")
+    elif query == "4":
+        photo = FSInputFile(r"images\catalog\tfprev.jpeg")
+        await callback.message.answer_photo(photo, caption="Ааааа монстри")
+        await callback.message.answer("Отлично! Ваш выбор The forest. Ожидайте ключ от игры в течении 5 минут.")
+    elif query == "5":
+        photo = FSInputFile(r"images\catalog\grannyprev.jpeg")
+        await callback.message.answer_photo(photo, caption="бабка")
+        await callback.message.answer("Отлично! Ваш выбор Granny. Ожидайте ключ от игры в течении 5 минут.")
+    elif query == "6":
+        photo = FSInputFile(r"images\catalog\fnafprev.jpeg")
+        await callback.message.answer_photo(photo, caption="мишка фнуфнер")
+        await callback.message.answer("Отлично! Ваш выбор Fnaf 4. Ожидайте ключ от игры в течении 5 минут.")
+    elif query == "7":
+        photo = FSInputFile(r"images\catalog\gmodprev.jpeg")
+        await callback.message.answer_photo(photo, caption="летающий унитаз")
+        await callback.message.answer("Отлично! Ваш выбор Garry's mod. Ожидайте ключ от игры в течении 5 минут.")
+    elif query == "8":
+        photo = FSInputFile(r"images\catalog\wboxprev.jpeg")
+        await callback.message.answer_photo(photo, caption="дадада")
+        await callback.message.answer("Отлично! Ваш выбор World box. Ожидайте ключ от игры в течении 5 минут.")
+    elif query == "9":
+        photo = FSInputFile(r"images\catalog\v3prev.jpeg")
+        await callback.message.answer_photo(photo, caption="?")
+        await callback.message.answer("Отлично! Ваш выбор Vedmyak 3. Ожидайте ключ от игры в течении 5 минут.")
+    elif query == "10":
+        photo = FSInputFile(r"images\catalog\cyber2077prev.jpeg")
+        await callback.message.answer_photo(photo, caption="комп не потянет скипай")
+        await callback.message.answer("Отлично! Ваш выбор Cyberpunk 2077. Ожидайте ключ от игры в течении 5 минут.")
+    elif query == "11":
+        photo = FSInputFile(r"images\catalog\gdprev.jpeg")
+        await callback.message.answer_photo(photo, caption="Крейзи тайм ыыы")
+        await callback.message.answer("Отлично! Ваш выбор Geometry Dash. Ожидайте ключ от игры в течении 5 минут.")
+    await callback.answer("Скинь на додеп")
 
 @user_router.message(F.text.lower() == "shooter")
 @user_router.message(Command("shooter"))
@@ -44,30 +95,10 @@ async def Sandbox(message: types.Message):
 async def RPG(message: types.Message):
     await message.answer("Выберите игру из списка возможных рпг:", reply_markup=reply.rpg_kb)
 
-@user_router.message(F.text.lower() == "tower defense")
-@user_router.message(Command("tower defense"))
-async def TD(message: types.Message):
-    await message.answer("Выберите игру из списка возможных тавер дефенсов:", reply_markup=reply.tower_defence_kb)
-
-@user_router.message(F.text.lower() == "simulator")
-@user_router.message(Command("simulator"))
-async def Simulator(message: types.Message):
-    await message.answer("Выберите игру из списка возможных симуляторов:")
-
-@user_router.message(F.text.lower() == "adventure")
-@user_router.message(Command("adventure"))
-async def Adventure(message: types.Message):
-    await message.answer("Выберите игру из списка возможных приключений:")
-
 @user_router.message(F.text.lower() == "platformer")
 @user_router.message(Command("platformer"))
 async def Platformer(message: types.Message):
-    await message.answer("Выберите игру из списка возможных платформеров:")
-
-@user_router.message(F.text.lower() == "puzzle")
-@user_router.message(Command("puzzle"))
-async def Puzzle(message: types.Message):
-    await message.answer("Выберите игру из списка возможных головоломок:")
+    await message.answer("Выберите игру из списка возможных платформеров:", reply_markup=reply.platformer_kb)
 
 @user_router.message(F.text.lower() == "назад")
 @user_router.message(Command("назад"))
