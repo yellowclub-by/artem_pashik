@@ -16,11 +16,3 @@ async def cod(message: types.Message):
     photo = FSInputFile(r"images\catalog\codprev.jpeg")
     await message.answer_photo(photo, caption="калда")
     await message.answer("Отлично! Ваш выбор Call of duty. Ожидайте ключ от игры в течении 5 минут.")
-
-
-
-
-
-
-
-
